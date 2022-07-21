@@ -109,6 +109,8 @@ func confront(p_player : Spatial, p_opponent : Spatial) -> void:
 	
 	anim.play("open")
 	$OutsideSound.play()
+	
+	opponent.get_child(1).get_child(0).play_animation("Confrontation")
 
 func throw_luggage(p_player : Spatial):
 	luggage_throwing = true

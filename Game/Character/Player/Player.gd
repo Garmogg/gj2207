@@ -73,10 +73,12 @@ func grab_passenger() -> void:
 func confrontation_transition():
 	throw_button.visible = false
 	confronting = true
+	$CharacterModel.play_animation("Confrontation")
 
 func luggage_transition():
 	throw_button.visible = false
 	confronting = true
+	$CharacterModel.play_animation("LuggageThrow")
 
 func move(delta) -> void:
 	var input_dir = Input.get_vector(
