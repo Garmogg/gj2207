@@ -20,6 +20,9 @@ script = ExtResource( 1 )
 [node name="CharacterModelNormal" parent="CharacterModel/CharacterModelNormal_export/Armature/Skeleton" index="0"]
 material/0 = ExtResource( 5 )
 
+[node name="BoneAttachment" parent="CharacterModel/CharacterModelNormal_export/Armature/Skeleton" index="1"]
+transform = Transform( 0.148873, 0.0771049, 0.985845, 0.859177, -0.503637, -0.0903543, 0.489542, 0.860467, -0.141225, -0.280469, 0.781105, -0.0213468 )
+
 [node name="AnimationTree" parent="CharacterModel" index="1"]
 parameters/playback = SubResource( 2 )
 

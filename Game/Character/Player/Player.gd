@@ -24,6 +24,7 @@ var walk_current_delta = walk_start_delay
 
 func _ready():
 	$CharacterModel.play_animation("Idle")
+	$CharacterModel.connect("push_ended", self, "on_push_ended")
 
 func _physics_process(_delta : float) -> void:
 	if confronting:
@@ -67,6 +68,14 @@ func grab_passenger() -> void:
 			get_tree().call_group("SequenceManager", "throw_luggage", self )
 			if nearest_passenger.ejected_luggage(): 
 				luggage_transition()
+				
+				match(nearest_passenger.luggage.settings.name):
+					"light":
+						$CharacterModel.set_luggage_visible(0)
+					"medium":
+						$CharacterModel.set_luggage_visible(1)
+					"heavy":
+						$CharacterModel.set_luggage_visible(2)
 
 	
 
@@ -79,6 +88,9 @@ func luggage_transition():
 	throw_button.visible = false
 	confronting = true
 	$CharacterModel.play_animation("LuggageThrow")
+
+func stop_confrontation():
+	$CharacterModel.play_animation("Idle")
 
 func move(delta) -> void:
 	var input_dir = Input.get_vector(
@@ -124,3 +136,6 @@ func add_near_passenger(passenger : Spatial) -> void:
 
 func remove_near_passenger(passenger : Spatial) -> void:
 	near_passengers.erase(passenger)
+
+func on_push_ended():
+	confronting = false

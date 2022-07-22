@@ -140,11 +140,12 @@ func stop_confront():
 	confronting = false
 	
 	if player != null:
-		player.confronting = false
+		player.stop_confrontation()
 		player = null
 	
 	if opponent != null:
 		opponent.global_transform = opponent_last_pos
+		opponent.get_child(1).get_node("CharacterModel").force_play_animation("Sitting")
 		opponent = null
 	
 	button_smasher.visible = false

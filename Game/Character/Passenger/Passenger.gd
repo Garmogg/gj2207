@@ -12,7 +12,7 @@ var protectiveness: float
 var saved_protectiveness: float
 var weight: float
 var luggage_ejectable : bool = true
-var luggage: Luggage
+var luggage: Luggage = null
 var timer:Timer
 var tried : bool = false
 
@@ -143,6 +143,9 @@ func ejected_luggage():
 #	else:
 #		return false
 
+	if luggage == null:
+		return false
+
 #	var randProtect = randi() % 100 * protectiveness
 	var rand_val_anger = randi() % 100 * anger_multiplicator
 	var rand_val_fear = randi() % 100 * fear_multiplicator
@@ -156,7 +159,6 @@ func ejected_luggage():
 	GameManager.object_thrown(luggage.settings["weight"])
 	GameManager.level.get_node("AircraftCabin/EjectionTrajectory").eject(luggage, false)
 	luggage.eject()
-	luggage = null
 	return true
 #		return true
 #	else :
